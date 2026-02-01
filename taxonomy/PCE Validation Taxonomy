@@ -1,0 +1,226 @@
+Title: PCE Validation Taxonomy
+Version: 1.0
+Field: Prompt Compliance Engineering (PCE)
+Founder: Michael Willis Fleming
+Effective Date: [Insert Date]
+
+1. PURPOSE
+The PCE Validation Taxonomy provides a comprehensive classification system for all possible failures, violations, and risk categories that must be checked when performing Prompt Compliance Engineering (PCE).
+It ensures uniformity, auditable tracking, and deterministic scoring across all implementations of PCS-001-compliant systems.
+
+2. SCOPE
+This taxonomy governs:
+Regulatory compliance checks
+Industry readiness validation
+Risk modeling and probabilistic outcome assessment
+Self-adversarial audit verification
+It applies to all AI-generated outputs subjected to PCE validation.
+
+3. TAXONOMY STRUCTURE
+Validation items are organized into four main domains, corresponding to PCS-001:
+Regulatory & Policy Compliance (R)
+Industry & Operational Readiness (I)
+Risk & Probabilistic Outcome Modeling (P)
+Self-Adversarial Audit Failures (S)
+Each domain has:
+Category: High-level group
+Subcategory: Specific type of violation
+Severity: Critical / High / Medium / Low
+Description: Explanation
+Failure Rule: Deterministic check
+Mitigation Guidance: Optional remediation steps (informative)
+
+4. DOMAIN 1 — REGULATORY & POLICY COMPLIANCE (R)
+Code
+Category
+Subcategory
+Severity
+Description
+Failure Rule
+R-1
+Government Law
+Jurisdictional Violation
+Critical
+Output violates applicable federal, state, or international law
+Automatic fail
+R-2
+Industry Regulation
+Healthcare Compliance
+Critical
+Violates HIPAA, FDA, or similar healthcare rules
+Automatic fail
+R-3
+Industry Regulation
+Finance Compliance
+Critical
+Violates SEC, FINRA, banking regulations
+Automatic fail
+R-4
+Platform Policy
+Social Media / SaaS
+High
+Conflicts with platform usage rules
+Fail unless mitigated
+R-5
+Restricted Claims
+Unverified Advice
+High
+Makes claims without substantiation
+Fail unless corrected
+R-6
+Privacy & Data Handling
+PII Exposure
+Critical
+Exposes personal identifiable information
+Automatic fail
+R-7
+Intellectual Property
+Copyright Violation
+Medium
+Uses proprietary content without permission
+Fail / review
+
+5. DOMAIN 2 — INDUSTRY & OPERATIONAL READINESS (I)
+Code
+Category
+Subcategory
+Severity
+Description
+Failure Rule
+I-1
+Feasibility
+Execution Failure
+Critical
+Output cannot be operationalized
+Automatic fail
+I-2
+Role Alignment
+Misassigned Responsibility
+High
+Output does not match intended role/user
+Fail
+I-3
+Tool Compatibility
+Unsupported Tools
+High
+Requires unavailable or incompatible tools
+Fail
+I-4
+Ambiguity
+Unclear Instructions
+Medium
+Output is ambiguous for execution
+Fail / warn
+I-5
+Dependency
+Missing Precondition
+High
+Output assumes unavailable prerequisites
+Fail
+I-6
+Terminology
+Industry Misuse
+Medium
+Uses incorrect domain-specific terms
+Fail / review
+
+6. DOMAIN 3 — RISK & PROBABILISTIC OUTCOME MODELING (P)
+Code
+Category
+Subcategory
+Severity
+Description
+Failure Rule
+P-1
+Complexity
+Instruction Overload
+High
+Output exceeds human or AI execution capability
+Fail
+P-2
+Fragility
+Dependency Fragility
+High
+Output relies on unstable or fragile processes
+Fail
+P-3
+Historical Risk
+Known Failure Archetype
+Critical
+Matches patterns of past failures
+Automatic fail
+P-4
+Entropy
+Instruction Entropy Too High
+Medium
+Excessively random or inconsistent instructions
+Fail / warn
+P-5
+Human Execution Risk
+High Variability
+High
+Human-dependent output with high failure potential
+Fail
+
+7. DOMAIN 4 — SELF-ADVERSARIAL AUDIT FAILURES (S)
+Code
+Category
+Subcategory
+Severity
+Description
+Failure Rule
+S-1
+Self-Validation
+Unchallenged Output
+Critical
+AI fails to critique its own output
+Automatic fail
+S-2
+Weakness Disclosure
+Hidden Risks
+High
+Output contains risks not flagged by AI
+Fail
+S-3
+Uncertainty Disclosure
+Omitted
+Medium
+Confidence or probability not stated
+Fail / warn
+S-4
+Contradiction Check
+Internal Conflict
+High
+Output contradicts itself or prior outputs
+Fail
+
+8. SEVERITY LEVEL DEFINITIONS
+Critical: Automatic fail, cannot be mitigated post-validation.
+High: Fail unless mitigated or revised.
+Medium: Fail or warn; may be conditional.
+Low: Warn only; does not block approval but should be addressed.
+
+9. TAXONOMY USAGE RULES
+All outputs must be scored against every domain and subcategory.
+Failure in any Critical item = output rejection.
+High/Medium/Low items contribute to scoring metrics and probabilistic success.
+Audit logs must reference the code and reason for each violation.
+Taxonomy updates require a version increment and public log.
+
+10. METADATA LINKAGE
+Each violation detected must be recorded in PCE metadata as:
+Copy code
+Yaml
+violations:
+  - code: "R-6"
+    description: "Exposes personal identifiable information"
+    severity: "Critical"
+    status: "Fail"
+    mitigation: "Remove all PII"
+11. CHANGE CONTROL
+Versioned and immutable per release.
+Changes require:
+New version number
+Approval by founder
+Public changelog entry
+End of /taxonomy/PCE-validation-taxonomy.md
