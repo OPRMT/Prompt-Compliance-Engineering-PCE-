@@ -1,0 +1,216 @@
+Title
+OPRMT™ Prompt Compliance Engineering (PCE) Framework Implementation
+Framework ID
+OPRMT-PCE-FRAMEWORK-001
+Version
+
+1.0
+Field
+Prompt Compliance Engineering (PCE)
+Governing Standard
+PCS-001 — Prompt Compliance Engineering Core Standard
+Founder
+Michael Willis Fleming
+
+1. PURPOSE
+This document defines the official OPRMT™ reference framework for implementing Prompt Compliance Engineering (PCE) in accordance with PCS-001 and the PCE Validation Taxonomy.
+This framework specifies:
+system architecture
+validation flow
+scoring logic
+enforcement rules
+metadata outputs
+Any implementation claiming “OPRMT™ PCE-compliant” MUST conform to this document without deviation.
+
+2. FRAMEWORK POSITIONING
+OPRMT™ (Phase I) governs prompt construction
+PCE (Phase II) governs output validation
+This framework is the bridge, not a replacement
+The OPRMT™ PCE Framework does not generate outputs.
+It evaluates, certifies, or blocks them.
+
+3. FRAMEWORK DESIGN PRINCIPLES
+The framework is governed by six immutable principles:
+Post-Generation Only
+Validation begins only after output generation is complete.
+Output Immutability
+Original output is frozen and fingerprinted.
+Deterministic Enforcement
+All decisions are rule-based and measurable.
+Multi-Domain Convergence
+All PCE domains must pass simultaneously.
+Self-Adversarial Validation
+AI must actively attempt to disprove compliance.
+Audit-First Design
+Every decision must be explainable and reproducible.
+
+4. HIGH-LEVEL ARCHITECTURE
+The framework consists of six mandatory layers, executed sequentially.
+Copy code
+
+L0 → Output Lock
+L1 → Regulatory & Policy Compliance Engine
+L2 → Industry & Operational Readiness Engine
+L3 → Risk & Probabilistic Outcome Engine
+L4 → Self-Adversarial Audit Engine
+L5 → Decision & Certification Engine
+Failure at any layer halts execution unless explicitly allowed by PCS-001.
+
+5. LAYER SPECIFICATIONS
+LAYER 0 — OUTPUT LOCK & FINGERPRINTING (L0)
+Purpose: Ensure validation integrity.
+Requirements:
+Output text is frozen
+Hash or UUID generated
+Timestamp recorded
+No mutation allowed during validation
+Artifacts Produced:
+output_fingerprint
+validation_session_id
+Failure to lock output = framework violation.
+LAYER 1 — REGULATORY & POLICY COMPLIANCE ENGINE (L1)
+Purpose: Enforce legal, regulatory, and policy compliance.
+Inputs:
+Jurisdiction profile
+Industry profile
+Platform constraints
+PCE Validation Taxonomy (Domain R)
+Checks Include:
+Government law conflicts
+Industry regulation violations
+Restricted or prohibited claims
+Privacy and data handling
+IP misuse
+Outputs:
+Compliance score (0–100)
+Violation list with severity
+Regulatory references
+Hard Rule:
+Any Critical (R) violation = automatic rejection
+LAYER 2 — INDUSTRY & OPERATIONAL READINESS ENGINE (L2)
+Purpose: Determine deployability in real-world workflows.
+Inputs:
+Intended user role
+Toolchain availability
+Execution context
+PCE Validation Taxonomy (Domain I)
+Checks Include:
+Feasibility
+Role alignment
+Tool compatibility
+Ambiguity density
+Dependency completeness
+Terminology accuracy
+Outputs:
+Readiness score (0–100)
+Ambiguity index
+Missing dependency list
+Rule:
+Critical readiness failures block approval
+LAYER 3 — RISK & PROBABILISTIC OUTCOME ENGINE (L3)
+Purpose: Quantify likelihood of successful execution.
+This is NOT prediction.
+It is risk-weighted probabilistic modeling.
+Inputs:
+Output complexity metrics
+Dependency fragility analysis
+Known failure archetypes
+Human execution variability
+PCE Validation Taxonomy (Domain P)
+Metrics Generated:
+Success probability (%)
+Confidence interval
+Risk contributor ranking
+Simulated failure scenarios
+Hard Threshold (Default):
+Minimum success probability: 99.0%
+Below threshold = rejection.
+LAYER 4 — SELF-ADVERSARIAL AUDIT ENGINE (L4)
+Purpose: Force AI opposition to its own output.
+Mandatory Actions:
+Identify weaknesses
+Attempt to invalidate compliance claims
+Surface ambiguity
+Explicitly state uncertainty
+Identify non-covered risks
+Failure Conditions:
+Inability to critique output
+Superficial self-review
+Omitted uncertainty
+Any Critical (S) violation = automatic rejection.
+LAYER 5 — DECISION & CERTIFICATION ENGINE (L5)
+Purpose: Produce final deterministic decision.
+Inputs:
+Scores from L1–L4
+Violation severity
+Success probability
+Confidence level
+Possible Outcomes:
+CERTIFIED
+CONDITIONALLY_VALID
+REJECTED
+BLOCKED
+Decision logic MUST be:
+deterministic
+reproducible
+auditable
+
+6. SCORING & WEIGHTING MODEL
+Default weighting (configurable but explicit):
+Domain
+Weight
+Regulatory Compliance
+35%
+Industry Readiness
+25%
+Risk Modeling
+30%
+Self-Adversarial Audit
+10%
+Critical failures override weighting.
+
+7. REQUIRED METADATA OUTPUT
+Every validation session MUST emit structured metadata:
+Copy code
+Yaml
+framework: OPRMT™ PCE Framework
+standard: PCS-001
+taxonomy_version: 1.0
+output_fingerprint: UUID
+jurisdiction_profile: US-Federal
+industry_profile: Business / SaaS
+compliance_score: 98.7
+readiness_score: 97.9
+success_probability: 99.2
+confidence_level: High
+violations:
+  - code: R-4
+    severity: High
+    status: Mitigated
+approval_status: CERTIFIED
+audit_ready: true
+timestamp: ISO-8601
+Absence of metadata = non-compliance.
+
+8. ENFORCEMENT RULES
+The framework may not revise outputs
+The framework may not soften violations
+The framework may not hide uncertainty
+All failures must be explicit
+
+9. CLAIMS & USAGE RESTRICTIONS
+Only systems implementing:
+PCS-001
+PCE Validation Taxonomy
+This framework document
+may claim:
+“OPRMT™ PCE Framework”
+“PCE-validated”
+“PCE-certified”
+Unauthorized claims constitute misrepresentation.
+
+10. VERSION CONTROL & EXTENSIBILITY
+Versioned per release
+Backward compatibility must be declared
+Extensions must not weaken PCS-001
+END OF /frameworks/OPRMT-PCE-implementation.md
